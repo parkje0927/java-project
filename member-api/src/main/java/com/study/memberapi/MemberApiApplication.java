@@ -1,13 +1,13 @@
-package com.study.msa;
+package com.study.memberapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsaApplication {
+public class MemberApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MsaApplication.class, args);
+        SpringApplication.run(MemberApiApplication.class, args);
     }
 
 }
