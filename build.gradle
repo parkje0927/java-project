@@ -5,7 +5,7 @@ plugins {
 }
 
 subprojects {
-    group = 'com.zum'
+    group = 'com.study'
     sourceCompatibility = '17'
 
     apply plugin: 'java'
@@ -19,7 +19,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2022.0.2'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.1'
         }
     }
 
