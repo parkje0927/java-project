@@ -1,4 +1,4 @@
-package com.study.memberapi.config;
+package com.study.member.config;
 
 import com.study.common.interceptor.CustomHeaderInterceptor;
 import com.study.common.resolver.UserIdArgumentResolver;

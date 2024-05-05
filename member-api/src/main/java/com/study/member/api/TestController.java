@@ -1,9 +1,10 @@
-package com.study.memberapi.api;
+package com.study.member.api;
 
 import com.study.common.holder.UserIdHolder;
 import com.study.common.wrapper.ResponseResult;
-import com.study.memberapi.data.response.TestResponse;
-import com.study.memberapi.feign.AuthFeignClient;
+import com.study.member.pojo.response.TestResponse;
+import com.study.member.feign.AuthFeignClient;
+import com.study.member.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     private final AuthFeignClient authFeignClient;
+    private final RedisService redisService;
 
     @GetMapping("/test")
     public ResponseResult<TestResponse> test() {
@@ -20,4 +22,9 @@ public class TestController {
         System.out.println("userId = " + userId);
         return ResponseResult.from(authFeignClient.test().result());
     }
+
+    /**
+     * graphql docs example
+     */
+
 }
