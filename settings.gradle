@@ -1,7 +1,5 @@
 rootProject.name = 'java-msa-project'
 include 'member-api'
 include 'auth-api'
-include ':common-utils'
-include ':common-redis'
-
-//project(':common-utils').projectDir = new File('./common-utils')
+include 'common-utils'
+include 'common-redis'
