@@ -1,17 +1,31 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.5'
-    id 'io.spring.dependency-management' version '1.1.4'
+buildscript {
+    ext {
+        springBootVersion = '3.2.5'
+        springDependencyManagementVersion = '1.1.4'
+        springCloudVersion = '2023.0.1'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}"
+    }
 }
 
-subprojects {
+allprojects {
     group = 'com.study'
-    sourceCompatibility = '17'
+    version = '0.0.1'
 
     apply plugin: 'java'
     apply plugin: 'java-library'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.springframework.boot'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 
     repositories {
         mavenCentral()
@@ -19,16 +33,11 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.1'
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        implementation 'org.springframework.boot:spring-boot-starter-actuator'
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 
@@ -37,16 +46,17 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework:spring-webflux'
         testImplementation 'org.springframework.graphql:spring-graphql-test'
-
     }
 
     tasks.named('test') {
         useJUnitPlatform()
     }
 
-    //member-api 를 제외한 나머지 모듈에 해당
-    bootJar { enabled = false }
-    jar { enabled = true }
+    bootJar {
+        enabled = false
+    }
 
+    jar {
+        enabled = true
+    }
 }
-
